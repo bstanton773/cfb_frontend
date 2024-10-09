@@ -1,6 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Navigation from "./components/Navigation";
 import GameBoard from "./views/GameBoard";
+import Leaderboard from "./views/Leaderboard";
 
 
 export default function App() {
@@ -8,6 +9,7 @@ export default function App() {
     <Navigation />
     <Container>
         <GameBoard />
+        <Leaderboard />
     </Container>
     </>
 }
