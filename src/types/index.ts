@@ -20,7 +20,9 @@ export type GameType = {
     team_1: string,
     team_2: string,
     kickoff_time: Date,
-    spread: number
+    spread: number,
+    team_1_score: number,
+    team_2_score: number,
 }
 
 export type UserFormDataType = {

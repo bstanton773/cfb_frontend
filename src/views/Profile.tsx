@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import Card from 'react-bootstrap/Card';
-import ProfileView from '../components/ProfileView';
-import { CategoryType, UserType } from '../types';
 import EditProfile from '../components/EditProfile';
+import ProfileView from '../components/ProfileView';
+import MyPicks from '../components/MyPicks';
+import { CategoryType, UserType } from '../types';
 
 type ProfileProps = {
     currentUser: UserType;
@@ -29,6 +30,15 @@ export default function Profile({ currentUser, flashMessage, updateUser }: Profi
                     )}
                 </Card.Body>
             </Card>
+
+            { !isEditing && (
+                    <Card className='my-3'>
+                        <Card.Body>
+                                <MyPicks flashMessage={flashMessage} />
+                        </Card.Body>
+                    </Card>
+                )
+            }
         </>
     )
 }
