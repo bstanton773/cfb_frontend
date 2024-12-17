@@ -40,7 +40,7 @@ async function getGames(): Promise<APIResponse<GameType[]>> {
     let data;
     let error;
     try{
-        const response = await apiClientNoAuth().get(gamesEndpoint);
+        const response = await apiClientNoAuth().get(gamesEndpoint + '/');
         data = response.data
     } catch(err) {
         if (axios.isAxiosError(err)){
