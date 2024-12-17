@@ -7,12 +7,11 @@ type GameProps = {
 }
 
 export default function Game({ game }: GameProps) {
-    console.log(game)
     return (
         <Card>
             <Card.Header>Game #{game.id}</Card.Header>
             <Card.Body>
-                <Card.Title>{game.team_1} +{game.spread}<i className={game.id % 2 ? "bi bi-unlock" : "bi bi-lock"}></i> vs. {game.team_2}</Card.Title>
+                <Card.Title>{game.team_1} {game.spread < 0 || '+'}{game.spread}<i className={game.id % 2 ? "bi bi-unlock" : "bi bi-lock"}></i> vs. {game.team_2}</Card.Title>
                 <Form.Select>
                     <option>Your Pick</option>
                     <option value='1'>{game.team_1} Money Line</option>
