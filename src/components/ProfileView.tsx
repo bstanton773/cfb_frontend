@@ -35,7 +35,6 @@ export default function ProfileView({ userData, handleEditToggle, flashMessage, 
     // Handle form submission
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log(formData);
         const token = localStorage.getItem('token') || ''
         const response = await editUserById(token, userData!.id!, {password: formData.newPassword});
         if (response.error){

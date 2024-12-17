@@ -37,3 +37,13 @@ export type TokenType = {
     token:string,
     token_expiration:string
 }
+
+export type PickType = {
+    game_id: number;
+    id: number;
+    points: number;
+    selection: string;
+    updated_at: string;
+    user_id: number;
+    winning_pick: boolean;
+};

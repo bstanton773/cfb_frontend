@@ -20,6 +20,7 @@ export default function Navigation({ isLoggedIn, logUserOut }: NavigationProps) 
                         <Navbar.Collapse id="nav-collapse">
                             <Nav className='me-auto'>
                                 <Nav.Link as={Link} to='/'>Leaderboard</Nav.Link>
+                                <Nav.Link as={Link} to='/games'>Game Board</Nav.Link>
                                 <Nav.Link as={Link} to='/profile'>Profile</Nav.Link>
                                 <Nav.Link as={Link} to='/login' onClick={logUserOut}>Log Out</Nav.Link>
                             </Nav>

@@ -14,6 +14,7 @@ import Container from "react-bootstrap/Container";
 // helper imports
 import { getMe } from './lib/apiWrapper';
 import { CategoryType, UserType } from './types';
+import GameBoard from './views/GameBoard';
 
 
 export default function App() {
@@ -80,10 +81,10 @@ export default function App() {
         <Container>
             {message && <AlertMessage message={message} category={category} flashMessage={flashMessage} />}
                     <Routes>
-                        {/* <Route path='/' element={<Home isLoggedIn={isLoggedIn} currentUser={loggedInUser} flashMessage={flashMessage} /> } /> */}
                         <Route path='/' element={<Leaderboard /> } />
                         <Route path='/login' element={<Login flashMessage={flashMessage} logUserIn={logUserIn} /> } />
                         <Route path='/profile' element={<Profile currentUser={loggedInUser!} flashMessage={flashMessage} updateUser={updateUser}/>} />
+                        <Route path='/games' element={<GameBoard flashMessage={flashMessage}/> } />
                     </Routes>
         </Container>
     </>
