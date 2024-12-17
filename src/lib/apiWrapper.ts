@@ -2,7 +2,7 @@ import axios from "axios";
 import { GameType, UserType, TokenType, LeaderboardUserType, UserFormDataType, PickType } from "../types";
 
 
-const baseURL:string = 'http://127.0.0.1:5000/api/'
+const baseURL:string = location.origin.includes('localhost') ? 'http://127.0.0.1:5000/api/' : 'https://cfb-api-flask.onrender.com/api/'
 const gamesEndpoint:string = 'games'
 const userEndpoint:string = 'users'
 const leaderboardEndpoint:string = 'leaderboard'

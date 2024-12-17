@@ -10,7 +10,8 @@ export type UserType = {
 
 export type LeaderboardUserType = UserType & {
     total_correct:number,
-    total_points:number
+    total_points:number,
+    place:number
 }
 
 export type GameType = {

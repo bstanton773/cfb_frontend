@@ -11,7 +11,23 @@ export default function Leaderboard({}: Props) {
             const response = await getLeaderboard();
             if (response.data){
                 let userScores = response.data;
-                setUserScores(userScores.sort((a, b) => b.total_points - a.total_points))
+                let sortedScores = userScores.sort((a, b) => b.total_points - a.total_points)
+                let currentPlace = 1; // Start at 1st place
+                let prevPoints: number | null = null; // Track previous user's total points
+
+                const dataWithPlaces = sortedScores.map((user, index) => {
+                    // If total_points are different, update the place
+                    if (user.total_points !== prevPoints) {
+                        currentPlace = index + 1; // New place based on array position
+                    }
+                    prevPoints = user.total_points; // Update the previous points for next comparison
+                    return {
+                        ...user,
+                        place: currentPlace,
+                    };
+                });
+
+                setUserScores(dataWithPlaces)
             }
         }
 
@@ -33,7 +49,7 @@ export default function Leaderboard({}: Props) {
                 <tbody className="table-group-divider">
                     { userScores.map(u => (
                         <tr key={u.id}>
-                            <th scope="row">{u.id}</th>
+                            <th scope="row">{u.place}</th>
                             <td>{u.first_name} {u.last_name}</td>
                             <td>{u.total_correct}</td>
                             <td>{u.total_points}</td>
