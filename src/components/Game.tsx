@@ -65,7 +65,7 @@ export default function Game({ game, myPicks, flashMessage, updateMyPicks }: Gam
                     <Form.Select onChange={handlePickChange} value={selectedPick}>
                         <option value=''>Your Pick</option>
                         <option value={game.spread > 0 ? 'UTW' : 'FTW'}>{game.team_1} Money Line</option>
-                        <option value={game.spread > 0 ? 'UTC' : 'FTW'}>{game.team_1} Spread</option>
+                        <option value={game.spread > 0 ? 'UTC' : 'FTC'}>{game.team_1} Spread</option>
                         <option value={game.spread > 0 ? 'FTC' : 'UTC'}>{game.team_2} Spread</option>
                         <option value={game.spread > 0 ? 'FTW' : 'UTW'}>{game.team_2} Money Line</option>
                     </Form.Select>
