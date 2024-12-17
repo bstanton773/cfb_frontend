@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { CategoryType, GameType, PickType } from "../types"
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
@@ -15,8 +15,13 @@ type GameProps = {
 export default function Game({ game, myPicks, flashMessage, updateMyPicks }: GameProps) {
     // Check if a pick already exists for the current game
     const existingPick = myPicks.find((pick) => pick.game_id === game.id);
-    const [selectedPick, setSelectedPick] = useState<string | null>(null);
+    const [selectedPick, setSelectedPick] = useState<string>('');
 
+    useEffect(() => {
+        if (existingPick) {
+            setSelectedPick(existingPick.selection);
+        }
+    }, [existingPick]);
 
     // Handle dropdown change
     const handlePickChange =  (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -45,7 +50,7 @@ export default function Game({ game, myPicks, flashMessage, updateMyPicks }: Gam
         }
 
         // Clear the selection after submission
-        setSelectedPick(null);
+        setSelectedPick('');
     };
 
     return (
@@ -57,7 +62,7 @@ export default function Game({ game, myPicks, flashMessage, updateMyPicks }: Gam
                     <i className={new Date(game.kickoff_time).getTime() - new Date().getTime() > 2 * 60 * 60 * 1000 ? "bi bi-unlock": "bi bi-lock"}></i>
                     vs. {game.team_2}</Card.Title>
                 <Form onSubmit={handleSubmit}>
-                    <Form.Select onChange={handlePickChange} defaultValue={existingPick ? existingPick.selection : ""}>
+                    <Form.Select onChange={handlePickChange} value={selectedPick}>
                         <option value=''>Your Pick</option>
                         <option value={game.spread > 0 ? 'UTW' : 'FTW'}>{game.team_1} Money Line</option>
                         <option value={game.spread > 0 ? 'UTC' : 'FTW'}>{game.team_1} Spread</option>
