@@ -23,6 +23,7 @@ export type GameType = {
     spread: number,
     team_1_score: number,
     team_2_score: number,
+    is_playoff: boolean,
 }
 
 export type UserFormDataType = {

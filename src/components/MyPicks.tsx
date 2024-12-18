@@ -45,6 +45,15 @@ export default function MyPicks({ flashMessage }: Props) {
         return `${selection[0] === 'F' ? favorite : underdog} to ${selection[2] === 'W' ? 'win' : 'cover'}`
     }
 
+    let totalPoints = 0
+    let totalCorrect = 0
+    for (let pick of picks){
+        if (pick.winning_pick){
+            totalCorrect++
+            totalPoints += pick.points
+        }
+    }
+
     return (
         <>
             <h1 className="text-center">My Picks</h1>
@@ -53,26 +62,35 @@ export default function MyPicks({ flashMessage }: Props) {
                     <tr>
                         <th>Game</th>
                         <th>Selection</th>
+                        <th>Points</th>
                         <th>Outcome</th>
                     </tr>
                 </thead>
                 <tbody>
                     {picks.map(pick => {
                         const game = games.find(g => g.id == pick.game_id)
-                        console.log(pick.game_id, game?.id)
                         return (
                             <tr key={pick.id}>
                                 <td>{game?.team_1} {game!.spread > 0 && '+'}{game?.spread} vs {game?.team_2}</td>
                                 <td>{userSelection(pick.selection, game!)}</td>
+                                <td>+{pick.points}</td>
                                 { game!.team_1_score && game?.team_2_score ? (
                                     <td className={pick.winning_pick ? 'text-success' : 'text-danger'}>{pick.winning_pick ? 'Winner' : 'Loser'}</td>
                                 ) : (
-                                    <td>In Progress</td>
+                                    <td>{new Date(game!.kickoff_time) < new Date() ? "In Progress" : "Game Not Started"}</td>
                                 )}
                             </tr>
                         )
                     })}
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td><strong>Total</strong></td>
+                        <td><strong></strong></td>
+                        <td><strong>{totalPoints}</strong></td>
+                        <td><strong>{totalCorrect}</strong></td>
+                    </tr>
+                </tfoot>
             </Table>
         </>
     )
