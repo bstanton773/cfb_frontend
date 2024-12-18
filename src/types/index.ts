@@ -19,7 +19,7 @@ export type GameType = {
     bowl_name: string,
     team_1: string,
     team_2: string,
-    kickoff_time: Date,
+    kickoff_time: string,
     spread: number,
     team_1_score: number,
     team_2_score: number,

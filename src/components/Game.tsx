@@ -53,6 +53,26 @@ export default function Game({ game, myPicks, flashMessage, updateMyPicks }: Gam
         setSelectedPick('');
     };
 
+    const formatDateToLocal = (gmtDate: string): string => {
+            const date = new Date(gmtDate);
+
+            // Check if the date is valid
+            if (isNaN(date.getTime())) {
+                return "Invalid date";
+            }
+
+            // Format the date in local time
+            const formatter = new Intl.DateTimeFormat("en-US", {
+                month: "long",
+                day: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true,
+            });
+
+            return formatter.format(date);
+    };
+
     return (
         <Card className="my-3">
             <Card.Header>{game.bowl_name}</Card.Header>
@@ -61,6 +81,7 @@ export default function Game({ game, myPicks, flashMessage, updateMyPicks }: Gam
                     {game.team_1} {game.spread < 0 || '+'}{game.spread}
                     <i className={new Date(game.kickoff_time).getTime() - new Date().getTime() > 2 * 60 * 60 * 1000 ? "bi bi-unlock": "bi bi-lock"}></i>
                     vs. {game.team_2}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">{formatDateToLocal(game.kickoff_time)}</Card.Subtitle>
                 <Form onSubmit={handleSubmit}>
                     <Form.Select onChange={handlePickChange} value={selectedPick}>
                         <option value=''>Your Pick</option>
