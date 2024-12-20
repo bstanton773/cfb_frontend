@@ -15,6 +15,7 @@ import Container from "react-bootstrap/Container";
 import { getMe } from './lib/apiWrapper';
 import { CategoryType, UserType } from './types';
 import GameBoard from './views/GameBoard';
+import GamePicks from './views/GamePicks';
 
 
 export default function App() {
@@ -85,6 +86,7 @@ export default function App() {
                         <Route path='/login' element={<Login flashMessage={flashMessage} logUserIn={logUserIn} /> } />
                         <Route path='/profile' element={<Profile currentUser={loggedInUser!} flashMessage={flashMessage} updateUser={updateUser}/>} />
                         <Route path='/games' element={<GameBoard flashMessage={flashMessage}/> } />
+                        <Route path='/picks' element={<GamePicks /> } />
                     </Routes>
         </Container>
     </>

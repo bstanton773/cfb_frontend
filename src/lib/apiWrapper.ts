@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GameType, UserType, TokenType, LeaderboardUserType, UserFormDataType, PickType } from "../types";
+import { GameType, UserType, TokenType, LeaderboardUserType, UserFormDataType, PickType, GamePickType } from "../types";
 
 
 const baseURL:string = location.origin.includes('localhost') ? 'http://127.0.0.1:5000/api/' : 'https://cfb-api-flask.onrender.com/api/'
@@ -36,11 +36,12 @@ type APIResponse<T> = {
     error?: string
 }
 
-async function getGames(): Promise<APIResponse<GameType[]>> {
+async function getGames(includePicks: boolean = false): Promise<APIResponse<GameType[] | GamePickType[]>> {
     let data;
     let error;
     try{
-        const response = await apiClientNoAuth().get(gamesEndpoint + '/');
+        const queryParam = includePicks ? "?picks=true" : ""
+        const response = await apiClientNoAuth().get(gamesEndpoint + '/' + queryParam);
         data = response.data
     } catch(err) {
         if (axios.isAxiosError(err)){

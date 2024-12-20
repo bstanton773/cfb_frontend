@@ -51,3 +51,7 @@ export type PickType = {
     user_id: number;
     winning_pick: boolean;
 };
+
+export type GamePickType = GameType & {
+    picks: (PickType & { user: UserType })[];
+};
