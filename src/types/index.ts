@@ -24,6 +24,7 @@ export type GameType = {
     team_1_score: number,
     team_2_score: number,
     is_playoff: boolean,
+    is_championship: boolean,
 }
 
 export type UserFormDataType = {

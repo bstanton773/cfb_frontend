@@ -84,6 +84,8 @@ export default function Game({ game, myPicks, flashMessage, updateMyPicks }: Gam
         }
         if (game.is_playoff) {
             val *=2
+        } else if (game.is_championship){
+            val *= 3
         }
         return val
     }
@@ -91,9 +93,9 @@ export default function Game({ game, myPicks, flashMessage, updateMyPicks }: Gam
     return (
         <Card className="my-3">
             <Card.Header>
-                {game.is_playoff && <i className="bi bi-star-fill"></i>}
+                {(game.is_playoff || game.is_championship) && <i className={`bi bi-star-fill ${game.is_championship && 'text-primary'}`}></i>}
                 {game.bowl_name}
-                {game.is_playoff && <i className="bi bi-star-fill"></i>}
+                {(game.is_playoff || game.is_championship) && <i className={`bi bi-star-fill ${game.is_championship && 'text-primary'}`}></i>}
             </Card.Header>
             <Card.Body>
                 <Card.Title>

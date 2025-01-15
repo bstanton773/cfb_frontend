@@ -46,6 +46,7 @@ export default function GameBoard({ flashMessage }: GameBoardProps) {
             <Card>
                 <Card.Body>
                     <i className="bi bi-star-fill"></i> Playoff Game (x2 Points)<br />
+                    <i className="bi bi-star-fill text-primary"></i> Championship Game (x3 Points)<br />
                     <i className="bi bi-unlock"></i> Line subject to change<br />
                     <i className="bi bi-lock"></i> Line is locked<br />
                 </Card.Body>
